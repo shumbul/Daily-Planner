@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<div style="width:1000px; margin:0 auto;" align="center">
+<h1>TODO LIST</h1>
+<form method="post" action="/addtask/" >
+    {% csrf_token %}
+    <input type="text" name="task" >
+    <input type="submit" value="add" class="btn btn-success" name="">
+    <br>
+    <br>
+</form>
+        </div>
+<table align="center" style="width:40%">
+    <tr>
+        <th> TASK </th>
+        <th> ADD / DELETE</th>
+    </tr>
+{% for mytodo in mytodos %}
+    <tr>
+        <td>{{mytodo.task}}</td>
+        <td> <a href = "/deletetask/{{mytodo.id}}/" class ="btn btn-success">Delete</a> <a href = "/edittask/{{mytodo.id}}/" class ="btn btn-danger">Edit</a> </td>
+        </tr>
+{% endfor %}
+</table>
+{% endblock %}
